@@ -1,0 +1,3 @@
+*.cpp linguist-detectable
+*.hpp linguist-detectable
+Makefile linguist-vendored
