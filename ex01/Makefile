@@ -22,6 +22,7 @@ $(NAME): $(OBJ)
 	@echo "Linking executable..."
 	@$(COMPILER) $(OBJ) -o $@
 	@echo "$(NAME) built!"
+	@ctags -R .
 
 $(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
 	@echo "Compiling $@..."
@@ -36,6 +37,7 @@ clean:
 fclean: clean
 	@echo "Removing executable..."
 	@$(RM) $(NAME)
+	@$(RM) tags
 
 re: fclean all
 

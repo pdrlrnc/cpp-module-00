@@ -1,4 +1,5 @@
 #include "phonebook.hpp"
+#include <ostream>
 
 PhoneBook::PhoneBook() : _index(0), _full(false) {}
 PhoneBook::~PhoneBook() {}
@@ -12,6 +13,22 @@ void PhoneBook::addContact(const Contact& newContact)
 	}
 	_contacts[_index] = newContact;
 	_index++;
+	
+}
+
+void PhoneBook::displaySingleContact(int index)
+{
+	if ((!_full && ((_index - 1) < index))
+		|| (_full && index > (MAX_CONTACTS - 1)))
+	{
+		std::cout << "You entered a invalid index\n";
+		return ;
+	}
+	std::cout << "First name: " << _contacts[index].getFirstName() << std::endl;
+	std::cout << "Last name: " << _contacts[index].getLastName() << std::endl;
+	std::cout << "Nickname: " << _contacts[index].getNickname() << std::endl;
+	std::cout << "Phone number: " << _contacts[index].getPhoneNumber() << std::endl;
+	std::cout << "Darkest secret: " << _contacts[index].getDarkestSecret() << std::endl;
 	
 }
 
@@ -63,37 +80,44 @@ int PhoneBook::find()
 	matchInput(input);
 	return 0;
 }
+**/
+
+void PhoneBook::formatField(const std::string& field)
+{
+	int i;
+	int spaces;
+
+	if (field.length() > 10)
+	{
+		i = 0;
+		while (i < 9)
+			std::cout << field[i++];
+		std::cout << ".";
+	}
+	else 
+	{
+		spaces = 10 - field.length();
+		while (spaces-- > 0)
+			std::cout << " ";
+		std::cout << field ;
+	}
+	std::cout << "|";
+}
+
 
 void PhoneBook::displayContacts()
 {
 	if (!_full && !_index)
-		std::cout << "Phonebook is empty! You should get some friends :/";
-	else if (!_full)
+		return ;
+	for (int i = 0; !_full ? i < _index : i < MAX_CONTACTS ; i++)
 	{
-		for (int i = _index - 1; i >= 0; i--)
-		{
-			std::cout << "Name: " + _contacts[i].getName() + "\t";
-			std::cout << "Phone number: " + _contacts[i].getPhoneNumber() + "\t";
-			std::cout << "Address: " + _contacts[i].getAddress() + "\n";
-
-		}
+		std::cout << "|         " << i << "|";
+		formatField(_contacts[i].getFirstName());
+		formatField(_contacts[i].getLastName());
+		formatField(_contacts[i].getNickname());
+		std::cout << std::endl;
 	}
-	else 
-	{
-		for (int i = _index - 1; i >= 0; i--)
-		{
-			std::cout << "Name: " + _contacts[i].getName() + "\t";
-			std::cout << "Phone number: " + _contacts[i].getPhoneNumber() + "\t";
-			std::cout << "Address: " + _contacts[i].getAddress() + "\n";
-		}
-		for (int i = MAX_CONTACTS - 1; i >= _index; i--)
-		{
-
-			std::cout << "Name: " + _contacts[i].getName() + "\t";
-			std::cout << "Phone number: " + _contacts[i].getPhoneNumber() + "\t";
-			std::cout << "Address: " + _contacts[i].getAddress() + "\n";
-		}
-	}
-	std::cout << std::endl;
 }
-**/
+
+
+
