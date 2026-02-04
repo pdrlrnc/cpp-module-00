@@ -4,7 +4,7 @@
 
 void showOptions()
 {
-	std::cout << "(1) - Add contact\n(2) - Display contacts\n(3) - Find\n(4) - Leave\n";
+	std::cout << "(ADD) - Add contact\n(SEARCH) - Search contacts\n(EXIT) - Exit and lose your contacts FOREVER\n";
 }
 
 bool validPhoneNumber(const std::string& phoneNumber)
@@ -26,22 +26,40 @@ bool validName(const std:: string& name)
 
 void addContact(PhoneBook& phoneBook)
 {
-	std::string name;
+	std::string firstName;
+	std::string lastName;
+	std::string nickname;
 	std::string phoneNumber;
-	std::string address;
+	std::string darkestSecret;
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Creating a new contact on your phone book! Please insert the following identifiers:\n";
 	std::cout << std::endl;
-	std::cout << "Name:\n";
-	std::cin >> name;
-	while (!validName(name))
+
+	std::cout << "First name:\n";
+	std::cin >> firstName;
+	while (!validName(firstName))
 	{
 		std::cout << "Invalid name, please try again.\n";
-		std::cout << "Name:\n";
-		std::cin >> name;
+		std::cout << "First name:\n";
+		std::cin >> firstName;
 	}
 	std::cout << std::endl;
+
+	std::cout << "Last name:\n";
+	std::cin >> lastName;
+	while (!validName(lastName))
+	{
+		std::cout << "Invalid name, please try again.\n";
+		std::cout << "Last name:\n";
+		std::cin >> lastName;
+	}
+	std::cout << std::endl;
+
+	std::cout << "Nickname:\n";
+	std::cin >> nickname;
+	std::cout << std::endl;
+
 	std::cout << "Phone number:\n";
 	std::cin >> phoneNumber;
 	while (!validPhoneNumber(phoneNumber))
@@ -51,24 +69,25 @@ void addContact(PhoneBook& phoneBook)
 		std::cin >> phoneNumber;	
 	}
 	std::cout << std::endl;
-	std::cout << "Address:\n";
-	std::cin >> address;
-	phoneBook.addContact(Contact(name, phoneNumber, address));
+
+	std::cout << "Darkest secret:\n";
+	std::cin >> darkestSecret;
+	phoneBook.addContact(Contact(firstName, lastName, nickname, phoneNumber, darkestSecret));
 	std::cout << std::endl << std::endl;
-	std::cout << name + " added to the phone book!";
+	std::cout << firstName << " " << lastName << " added to the phone book!";
 	std::cout << std::endl << std::endl;
 }
 
 int main()
 {
 	PhoneBook phoneBook;
-	int input;
+	std::string input;
 
 	std::cout << "\t\tWELCOME TO YOUR PHONE BOOK\t\t\n";
 	std::cout <<"\t\t__________________________\t\t\n";
 
-	input = 0;
-	while (input != 4)
+	input = "";
+	while (input != "EXIT")
 	{
 		showOptions();
 		//if the user is dumb and types a char, the input stream enters a fail state
@@ -83,33 +102,14 @@ int main()
 			std::cin.clear();
 			//delete everything thats in the input buffer until you find a new line (enter)
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			input = 0;
 		}
-		switch(input)
-		{
-			case 1:
-				addContact(phoneBook);
-				break;
-			case 2:
-				std::cout << std::endl << std::endl;
-				std::cout << "\nYour contacts:\n";
-				std::cout <<"_____________\n";
-				phoneBook.displayContacts();
-				std::cout << std::endl << std::endl;
-				break;
-			case 3:
-				input = phoneBook.find();
-				if (input == 4)
-					std::cout << "Bye!\n";
-				break;
-			case 4:
-				std::cout << "Bye!\n";
-				break;
-			default:
-				std::cout << "Wrong input, try again!\n";
-				break;
-				
-		}
+		if (input == "ADD")
+			addContact(phoneBook);
+		else if (input == "SEARCH")
+			return 1;
+		else if (input == "EXIT")
+			std::cout << "Say goodbye to me and to all your contacts!\n";
+		else
+			std::cout << "Wrong input, try again!\n";	
 	}
-
 }

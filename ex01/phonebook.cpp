@@ -15,6 +15,7 @@ void PhoneBook::addContact(const Contact& newContact)
 	
 }
 
+/**
 void PhoneBook::matchInput(std::string& input)
 {
 	std::string currContact;
@@ -95,3 +96,4 @@ void PhoneBook::displayContacts()
 	}
 	std::cout << std::endl;
 }
+**/

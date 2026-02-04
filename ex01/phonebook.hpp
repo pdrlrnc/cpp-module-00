@@ -12,7 +12,7 @@ class PhoneBook
 		Contact _contacts[MAX_CONTACTS];
 		int _index;
 		bool _full;
-		void matchInput(std::string& input);
+//		void matchInput(std::string& input);
 	public:
 		//no args constructor
 		PhoneBook();
@@ -20,8 +20,8 @@ class PhoneBook
 		~PhoneBook();
 
 		void addContact(const Contact& newContact);
-		void displayContacts();
-		int find();
+//		void displayContacts();
+//		int find();
 
 };
 
