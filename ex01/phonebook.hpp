@@ -4,7 +4,7 @@
 #include "contact.hpp"
 #include <iostream>
 
-#define MAX_CONTACTS 8
+#define MAX_CONTACTS 4
 
 class PhoneBook 
 {
@@ -12,6 +12,7 @@ class PhoneBook
 		Contact _contacts[MAX_CONTACTS];
 		int _index;
 		bool _full;
+		void matchInput(std::string& input);
 	public:
 		//no args constructor
 		PhoneBook();
@@ -20,6 +21,7 @@ class PhoneBook
 
 		void addContact(const Contact& newContact);
 		void displayContacts();
+		int find();
 
 };
 
