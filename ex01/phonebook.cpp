@@ -1,8 +1,7 @@
 #include "phonebook.hpp"
-#include <ostream>
 
-PhoneBook::PhoneBook() : _index(0), _full(false) {}
-PhoneBook::~PhoneBook() {}
+PhoneBook::PhoneBook() : _index(0), _full(false) { std::cout << "Calling Phonebook no args constructor." << std::endl; }
+PhoneBook::~PhoneBook() { std::cout << "Calling Phonebook destructor." << std::endl; }
 
 void PhoneBook::addContact(const Contact& newContact)
 {
@@ -18,7 +17,7 @@ void PhoneBook::addContact(const Contact& newContact)
 
 void PhoneBook::displaySingleContact(int index)
 {
-	if ((!_full && ((_index - 1) < index))
+	if (index < 0 || (!_full && ((_index - 1) < index))
 		|| (_full && index > (MAX_CONTACTS - 1)))
 	{
 		std::cout << "You entered a invalid index\n";

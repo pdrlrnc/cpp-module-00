@@ -3,8 +3,8 @@ SRC         = main.cpp phonebook.cpp contact.cpp
 OBJ_DIR	    = obj/
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)%.o, $(SRC))
 
-COMPILER    = c++
-CFLAGS      = -Wall -Wextra -Werror -g -std=c++98
+COMPILER    = g++
+CFLAGS      = -Wall -Wextra -Werror -g -O0 -std=c++98
 RM          = rm -rf
 
 GRAY        = \033[38;5;244m

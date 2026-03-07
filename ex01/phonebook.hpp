@@ -2,9 +2,12 @@
 #define PHONEBOOK_H
 
 #include "contact.hpp"
+#include <ostream>
 #include <iostream>
+#include <cctype>
+#include <limits>
 
-#define MAX_CONTACTS 4
+#define MAX_CONTACTS 8
 
 class PhoneBook 
 {
