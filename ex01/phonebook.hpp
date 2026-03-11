@@ -7,11 +7,10 @@
 #include <cctype>
 #include <limits>
 
-#define MAX_CONTACTS 8
-
 class PhoneBook 
 {
 	private:
+		static const int MAX_CONTACTS = 8;
 		Contact _contacts[MAX_CONTACTS];
 		int _index;
 		bool _full;

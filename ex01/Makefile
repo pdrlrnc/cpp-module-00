@@ -3,7 +3,7 @@ SRC         = main.cpp phonebook.cpp contact.cpp
 OBJ_DIR	    = obj/
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)%.o, $(SRC))
 
-COMPILER    = g++
+COMPILER    = c++
 CFLAGS      = -Wall -Wextra -Werror -g -O0 -std=c++98
 RM          = rm -rf
 
